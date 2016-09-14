@@ -15,6 +15,7 @@ namespace ConvertApp
             InitializeComponent();
         }
 
+        //Convert Word files to PDF
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -165,9 +166,9 @@ namespace ConvertApp
             }
         }
 
+        //Convert Excel files to PDF
         private void button2_Click(object sender, EventArgs e)
         {
-
             string sourceFilePath = "";
             string targetFilePath = "";
             string[] allFiles = Directory.GetFiles(@"D:\site\RadPDFtoCreate");
