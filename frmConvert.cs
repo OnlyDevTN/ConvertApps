@@ -15,32 +15,6 @@ namespace ConvertApp
             InitializeComponent();
         }
 
-        //Convert Word files to PDF
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            string sourceFilePath = "";
-            string targetFilePath = "";
-            //string[] allFiles = Directory.GetFiles(@"D:\site\RadPDFtoCreate");
-            string[] allFiles = Directory.GetFiles(@"D:\site\RadPDFtoCreate", "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith(".doc") || s.EndsWith(".docx")).Where(s => (!s.Contains("~$"))).ToArray();
-            //Loop on files on convert each of them
-            foreach (var file in allFiles)
-	        {
-                sourceFilePath = file;
-                targetFilePath = file.Substring(0,file.IndexOf(".")) + ".pdf";
-                try
-                {
-                    if (sourceFilePath.EndsWith(".doc") || sourceFilePath.EndsWith(".docx"))
-                    {
-                        word2PDF(sourceFilePath, targetFilePath);
-                        System.IO.File.Delete(sourceFilePath);
-                    }
-                }
-                catch (Exception) { }
-	        }            
-        }
-               
-
         /// <summary>
         /// Convert word document to PDF
         /// </summary>
@@ -167,11 +141,11 @@ namespace ConvertApp
         }
 
         //Convert Excel files to PDF
-        private void button2_Click(object sender, EventArgs e)
+        private void btnCnvExcel_Click(object sender, EventArgs e)
         {
             string sourceFilePath = "";
             string targetFilePath = "";
-            string[] allFiles = Directory.GetFiles(@"D:\site\RadPDFtoCreate");
+            string[] allFiles = Directory.GetFiles(System.IO.Directory.GetCurrentDirectory());
             //Loop on files on convert each of them
             foreach (var file in allFiles)
             {
@@ -179,14 +153,37 @@ namespace ConvertApp
                 targetFilePath = file.Substring(0, file.IndexOf(".")) + ".pdf";
                 try
                 {
-                    if(sourceFilePath.EndsWith(".xls") || sourceFilePath.EndsWith(".xlsx"))                  
+                    if (sourceFilePath.EndsWith(".xls") || sourceFilePath.EndsWith(".xlsx"))
                     {
                         excel2PDF(sourceFilePath, targetFilePath);
                         System.IO.File.Delete(sourceFilePath);
-                    }                    
+                    }
                 }
                 catch (Exception) { }
-            }            
+            }
+        }
+
+        //Convert Word files to PDF
+        private void btnCnvWord_Click(object sender, EventArgs e)
+        {
+            string sourceFilePath = "";
+            string targetFilePath = "";
+            string[] allFiles = Directory.GetFiles(System.IO.Directory.GetCurrentDirectory(), "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith(".doc") || s.EndsWith(".docx")).Where(s => (!s.Contains("~$"))).ToArray();
+            //Loop on files on convert each of them
+            foreach (var file in allFiles)
+            {
+                sourceFilePath = file;
+                targetFilePath = file.Substring(0, file.IndexOf(".")) + ".pdf";
+                try
+                {
+                    if (sourceFilePath.EndsWith(".doc") || sourceFilePath.EndsWith(".docx"))
+                    {
+                        word2PDF(sourceFilePath, targetFilePath);
+                        System.IO.File.Delete(sourceFilePath);
+                    }
+                }
+                catch (Exception) { }
+            }
         }
     }
 }
