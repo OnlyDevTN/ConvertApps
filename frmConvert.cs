@@ -131,12 +131,9 @@ namespace ConvertApp
                 if (MSdoc != null)
                 {
                     MSdoc.Documents.Close(ref Unknown, ref Unknown, ref Unknown);
-                    //WordDoc.Application.Quit(ref Unknown, ref Unknown, ref Unknown); 
                 }
                 // for closing the application
                 MSdoc.Application.Quit(ref Unknown, ref Unknown, ref Unknown);
-                //MSdoc.Application.Quit( Type.Missing, Type.Missing, Type.Missing);
-
             }
         }
 
